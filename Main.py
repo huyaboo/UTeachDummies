@@ -28,6 +28,11 @@ def main():
 	async def unload_extension(ctx, file):
 		client.unload_extension(f"cogs.{file}")
 
+	@client.command('reload')
+	async def reload_extension(ctx, file):
+		await unload_extension(ctx, file)
+		await load_extension(ctx, file)
+
 	# Reads and creates commands from files listed in the cogs folder
 	for file in os.listdir("./cogs"):
 		if file.endswith(".py"):
